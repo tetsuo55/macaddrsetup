@@ -24,11 +24,10 @@ int main(int argc, char **argv)
 	uint32_t size;
 	char buf[6];
 	FILE *fpb, *fpw = NULL;
-	int ret, err, bt_addr, wl_addr;
+	int ret, err, bt_addr;
 
 	// Sony had a check for ro.hardware here, but since all supported devices were added here anyways,
 	// and the values are the same, it has been removed.
-	wl_addr=2560;
 	bt_addr=2568;
 
 	for (;;) {
@@ -73,6 +72,7 @@ int main(int argc, char **argv)
 
 	if (argc > 1) {
 		fpw = fopen(argv[1], "w");
+		int wl_addr=2560;
 		if (!fpw) {
 			SLOGE("failed to open %s for writing: %s\n", argv[1], strerror(errno));
 			ta_close();
